@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Discover Price On Hover</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap');
+
+:root {
+  --ticket-height: 60px;
+  --color-blue: #b92828;
+  --color-orange: #b92828;
+  --color-green: #b92828;
+  /* be9090  */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: var(--spacing-l);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F1F1F1;
+  font-family: 'Open Sans', sans-serif;
+  
+  /* background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%); */
+}
+
+.info {
+  margin-top: 2rem;
+  padding: .9rem 1rem;
+  outline: none;
+  font-size: .95rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  min-width: 160px;
+  background-color: #be9090;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: all .2s linear;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+
+/* div{
+  border-radius: var(--spacing-l);
+} */
+.section-prices {
+  padding: 1.5rem 1rem;
+  border-radius: var(--spacing-l);
+}
+.section-prices .section-header {
+  background-color: #FFF;
+  margin-bottom: 1rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: rgb(239, 230, 230);
+  font-weight: 700;
+  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, .3);
+  
+}
+
+.list-boxs {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+}
+/* .list-boxs .starter {
+
+  border-radius: var(--spacing-l);
+} */
+
+.list-boxs .card {
+  width: 32%;
+  text-align: center;
+  position: relative;
+  max-width: 300px;
+  
+}
+
+.list-boxs .card .head,
+.list-boxs .card .body {
+  background-color: #FFF;
+  padding: 1.5rem 1rem;
+  /* border-radius:  15px; */
+}
+
+.list-boxs .card .head {
+  color: #be9090;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transform: translateY(30px);
+  transition: transform .3s linear;
+  border-bottom: 5px solid #b92828;
+  /* border-radius:  20px; */
+}
+.list-boxs .card:hover .head {
+  transform: translateY(0);
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
+}
+
+.list-boxs .card .ticket {
+  color: #FFF;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: var(--ticket-height);
+  box-shadow: inset 0px 6px 6px -5px rgba(0, 0, 0, .25),
+              inset 0px -6px 6px -5px rgba(0, 0, 0, .25);
+    border-radius:  5px;
+}
+.list-boxs .starter .ticket {
+  background-color: var(--color-green);
+}
+.list-boxs .standard .ticket {
+  background-color: var(--color-blue);
+}
+.list-boxs .premium .ticket {
+  background-color: var(--color-orange);
+  
+}
+
+.list-boxs .card .body {
+  transform: translateY(-30px);
+  transition: transform .3s linear;
+}
+.list-boxs .card:hover .body {
+  transform: translateY(0);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+}
+
+.list-boxs .card p {
+  font-size: .99rem;
+  color: #818181;
+  text-align:center;
+}
+.list-boxs .card .btn {
+  margin-top: 2rem;
+  padding: .6rem 1rem;
+  outline: none;
+  font-size: .85rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  min-width: 160px;
+  border: 1px solid #555;
+  background-color: #555;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: all .2s linear;
+}
+.list-boxs .card .btn:hover {
+  box-shadow: 0 5px 10px 1px rgba(0, 0, 0, .15);
+}
+
+.list-boxs .starter .btn {
+  background: var(--color-green);
+  border-color: var(--color-green);
+}
+.list-boxs .starter {
+  background-color: #ffffff;
+  border-radius: 20px;
+  
+}
+.list-boxs .standard .btn {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
+.list-boxs .standard {
+  background-color: #ffffff;
+  border-radius: 20px; 
+}
+  
+
+.list-boxs .premium .btn {
+  background: var(--color-orange);
+  border-color: var(--color-orange);
+}
+.list-boxs .premium {
+  background-color: #ffffff;
+  border-radius: 20px;
+  
+}
+
+.btn2 {
+  margin-top: 2rem;
+  padding: .8rem 1rem;
+  outline: none;
+  font-size: .85rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  min-width: 160px;
+  border: 1px solid #be9090;
+  background-color: #be9090;
+  cursor: pointer;
+  transition: all .2s linear;
+  border-radius: 5px;
+  width: 1px;
+  /* align-items: center; */
+  /* justify-items: center;
+  position:relative; */
+}
+.btn2 a{
+color: rgb(255, 255, 255);
+}
+.btn a{
+  color: #FFF;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+  .list-boxs {
+    justify-content: space-around;
+  }
+  .list-boxs .card {
+    width: 45%;
+    
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .list-boxs .card {
+    width: 95%;
+  }
+}
+
+</style>
+<body>
+
+<!-- partial:index.partial.html -->
+
+<section class="section-prices">
+  <h1 class="info">
+    Hover to see the price
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+    </svg>
+  </h1>
+  
+<!-- <h2 class="section-header">Our Pricing</h2> -->
+<div class="list-boxs">
+	<div class="card starter">
+		<div class="head">
+			Colorful
+		</div>
+		<div class="ticket">150 SAR</div>
+		<div class="body">
+			<p>
+       <img src="{%static 'img/66.jpg'%}"  width="180" height="120">
+       <br>
+       <br>
+    <b>Sizes:</b>  <br> A,B,C,D
+     </p>
+			<button class="btn">  <a href="https://wa.me/+966538753777"> Order Now</a> </button>
+		</div>
+	</div>
+	<div class="card standard">
+		<div class="head">
+			flowery
+		</div>
+		<div class="ticket">140 SAR</div>
+		<div class="body">
+			<p>
+  
+			  <img src="{%static 'img/11.jpg'%}"  width="180" height="120">
+        <br>
+        <br>
+     <b>Sizes:</b>  <br> A,B,C,D
+			</p>
+			<button class="btn">  <a href="https://wa.me/+966538753777"> Order Now</a> </button>
+		</div>
+	</div>
+	<div class="card premium">
+		<div class="head">
+			Seashell
+		</div>
+		<div class="ticket">170 SAR</div>
+		<div class="body">
+			<p>
+			  <img src="{%static 'img/101.jpg'%}"  width="180" height="120">
+        <br>
+        <br>
+     <b>Sizes:</b><br> A,B,C,D <br> 
+			</p>
+			<button class="btn">  <a href="https://wa.me/+966538753777"> Order Now</a> </button>
+		</div>
+	</div>
+</div>
+<p class="btn2">
+  <a href="{% url 'home' %}">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+  </svg>
+  Back  
+</a>
+&ensp; &ensp;     
+<a href="{% url 'bandanas' %}">
+    Next
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+  </svg>
+ 
+  </a>
+</p>
+
+</section>
+<!-- partial -->
+  
+</body>
+</html>
+
+{% endblock %}
